@@ -1,6 +1,6 @@
-# test
+# testing
 
-
+Use this boilerplate code inside your repo to test it before committing or pushing changes.
 1. Install "Make"
     ```bash
     # For windows (https://chocolatey.org/install)

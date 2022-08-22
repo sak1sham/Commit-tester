@@ -17,3 +17,7 @@
     ```bash
     python setup.py
     ```
+
+3. ```test.py``` file is required to test the code. A template has been added to the ```test.py``` file. After making changes, when you try to commit the code, the following changes are tested:
+    a) Test cases should be successfull
+    b) Test coverage should not be less than 80% (for individual files, as well as entire repo)

@@ -1,3 +1,3 @@
 test:
 	python test.py
-	python testCoverage.py
+	python test_coverage.py

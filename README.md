@@ -18,9 +18,12 @@ Use this boilerplate code inside your repo to test it before committing or pushi
     python setup.py
     ```
    Following files will be created:
-    A. Makefile
-    B. test_commit.py
+    1. Makefile
+    2. test_commit.py
 
 3. ```test.py``` file is essential to test the code. A template has been added to the ```test.py``` file. After making changes, when you try to commit the code, the following changes are tested:
     a) Test cases should be successfull
+
     b) Test coverage should not be less than the set limit (default=80%), for both: individual files and the entire repo
+    
+    c) Lint Score should be atleast the set limit (default=75.0/100.0) for all modified files

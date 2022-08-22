@@ -17,6 +17,9 @@ Use this boilerplate code inside your repo to test it before committing or pushi
     ```bash
     python setup.py
     ```
+   Following files will be created:
+    A. Makefile
+    B. test_coverage.py
 
 3. ```test.py``` file is essential to test the code. A template has been added to the ```test.py``` file. After making changes, when you try to commit the code, the following changes are tested:
     a) Test cases should be successfull

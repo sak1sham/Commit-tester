@@ -39,10 +39,10 @@ import argparse
 
 def test_coverage(test_file='test.py', limit=80):
     os.system(f'coverage run {test_file}')
-    os.system('coverage json')
+    os.system(f'coverage json --omit="{test_file}","test_coverage.py","setup.py"')
     test_coverage = open('coverage.json')
     test_coverage = json.load(test_coverage)
-
+    print(test_coverage)
     print(f"Asserting Test Coverage (with minimum limit of {limit}%):")
     if(test_coverage['totals']['percent_covered'] < limit):
         print(f"ERROR: Total test coverage is {test_coverage['totals']['percent_covered']}% which is less than {limit}%")
@@ -52,7 +52,7 @@ def test_coverage(test_file='test.py', limit=80):
 
 
     for file in test_coverage['files'].keys():
-        if(file not in [test_file, 'test_coverage.py']):
+        if(file not in [test_file, 'test_coverage.py', 'setup.py']):
             file_coverage = test_coverage['files'][file]['summary']['percent_covered']
             if(file_coverage < limit):
                 print(f"ERROR: {file} has a test coverage of {file_coverage}% which is less than {limit}%")

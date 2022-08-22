@@ -1,5 +1,12 @@
-def add(x, y, test=False):
-    if(not test):
-        a = 2
+'''
+This is the mainfile of your code
+'''
+
+def add(first, second, test=False):
+    '''
+    This function adds 2 numbers
+    '''
+    if not test:
+        print("Not in test mode")
     print("random print statement")
-    return x+y
+    return first+second

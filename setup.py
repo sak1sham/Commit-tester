@@ -3,12 +3,15 @@ import argparse
 parser = argparse.ArgumentParser(description="script to setup and secure commits")
 parser.add_argument("--testfile", help="The path of your test file (default: test.py)", type=str, required=False)
 parser.add_argument("--coverage", help="The minimum testing coverage (default: 80)", type=int, required=False)
+parser.add_argument("--lint", help="The minimum lint score out of 100 to pass (default: 75.0)", type=float, required=False)
 args, leftovers = parser.parse_known_args()
 
 if(args.testfile is None):
     args.testfile = "test.py"
 if(args.coverage is None):
     args.coverage = 80
+if(args.lint is None):
+    args.lint = 75.0
 
 ############################################################################
 ################# WRITE PRE-COMMIT FILE ####################################
@@ -23,7 +26,7 @@ with open('.git/hooks/pre-commit', 'w') as f:
 ################### WRITE MAKEFILE #########################################
 
 makefile = f'''test:
-	python test_commit.py --file={args.testfile} --limit={args.coverage}'''
+	python test_commit.py --file={args.testfile} --limit={args.coverage} --lint={args.lint}'''
 
 with open('Makefile', 'w') as f:
     f.write(makefile)
@@ -109,7 +112,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="script to test the test coverage for your changes and for the entire repo")
     parser.add_argument("--file", help="The path of your test file (default: test.py)", type=str, required=False)
     parser.add_argument("--limit", help="The minimum testing coverage (default: 80)", type=int, required=False)
-    parser.add_argument("--lint", help="The minimum lint score out of 100 to pass (default: 75)", type=int, required=False)
+    parser.add_argument("--lint", help="The minimum lint score out of 100 to pass (default: 75.0)", type=float, required=False)
     args, leftovers = parser.parse_known_args()
 
     if(args.file is None):

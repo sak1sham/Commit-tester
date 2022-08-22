@@ -13,11 +13,11 @@ Use this boilerplate code inside your repo to test it before committing or pushi
     apt-get -y install make
     ```
 
-2. Run setup.py file to create pre-commit hooks to test your code before committing
+2. Run setup.py file to create prerequisite files.
     ```bash
     python setup.py
     ```
 
-3. ```test.py``` file is required to test the code. A template has been added to the ```test.py``` file. After making changes, when you try to commit the code, the following changes are tested:
+3. ```test.py``` file is essential to test the code. A template has been added to the ```test.py``` file. After making changes, when you try to commit the code, the following changes are tested:
     a) Test cases should be successfull
-    b) Test coverage should not be less than 80% (for individual files, as well as entire repo)
+    b) Test coverage should not be less than the set limit (default=80%), for both: individual files and the entire repo

@@ -50,7 +50,6 @@ def test_coverage(test_file='test.py', limit=80):
     else:
         print(f"OK Total: {test_coverage['totals']['percent_covered']}%")
 
-
     for file in test_coverage['files'].keys():
         if(file not in [test_file, 'test_coverage.py', 'setup.py']):
             file_coverage = test_coverage['files'][file]['summary']['percent_covered']

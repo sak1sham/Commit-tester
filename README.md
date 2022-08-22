@@ -22,7 +22,7 @@ Use this boilerplate code inside your repo to test it before committing or pushi
     2. test_commit.py
 
 3. ```test.py``` file is essential to test the code. A template has been added to the ```test.py``` file. After making changes, when you try to commit the code, the following changes are tested:
-    1. Test cases should be successfull
+    1. Test cases should be successful
 
     2. Test coverage should not be less than the set limit (default=80%), for both: individual files and the entire repo
     

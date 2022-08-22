@@ -2,3 +2,4 @@
 coverage.json
 __pycache__
 .vscode
+Makefile

@@ -45,20 +45,20 @@ def test_coverage(test_file='test.py', limit=80):
 
     print(f"Asserting Test Coverage (with minimum limit of {limit}%):")
     if(test_coverage['totals']['percent_covered'] < limit):
-        print(f"❌ ERROR: Total test coverage is {test_coverage['totals']['percent_covered']}% which is less than {limit}%")
+        print(f"ERROR: Total test coverage is {test_coverage['totals']['percent_covered']}% which is less than {limit}%")
         sys.exit(1)
     else:
-        print(f"✅ Total: {test_coverage['totals']['percent_covered']}%")
+        print(f"OK Total: {test_coverage['totals']['percent_covered']}%")
 
 
     for file in test_coverage['files'].keys():
         if(file not in [test_file, 'test_coverage.py']):
             file_coverage = test_coverage['files'][file]['summary']['percent_covered']
             if(file_coverage < limit):
-                print(f"❌ ERROR: {file} has a test coverage of {file_coverage}% which is less than {limit}%")
+                print(f"ERROR: {file} has a test coverage of {file_coverage}% which is less than {limit}%")
                 sys.exit(1)
             else:
-                print(f"✅ {file}: {file_coverage}%")
+                print(f"OK {file}: {file_coverage}%")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="script to test the test coverage for your changes and for the entire repo")

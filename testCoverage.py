@@ -7,8 +7,11 @@ test_file = 'test.py'
 os.system(f'coverage run {test_file}')
 os.system('coverage json')
 test_coverage = open('coverage.json')
-
 test_coverage = json.load(test_coverage)
+
+if(test_coverage['totals']['percent_covered'] < 80):
+    print(f"ERROR: Total test coverage is {test_coverage['totals']['percent_covered']} which is less than 80%")
+    sys.exit(1)
 
 for file in test_coverage['files'].keys():
     if(file != test_file):

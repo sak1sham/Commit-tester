@@ -102,10 +102,10 @@ if __name__ == '__main__':
     if(args.lint is None):
         args.lint = 75
     
-    print("--------- TESTING SCRIPTS AND TEST-COVERAGE ----------")
+    print("\\n\\n--------- TESTING SCRIPTS AND TEST-COVERAGE ----------")
     f_test_coverage(test_file=args.file, limit=args.limit)
     
-    print("---------------- TESTING LINT SCORE ------------------")
+    print("\\n\\n---------------- TESTING LINT SCORE ------------------")
     list_changed_files = get_changed_files()
     for filepath in list_changed_files:
         if(filepath in ['requirements.txt', 'setup.py', 'README.md', '.gitignore']):
@@ -116,6 +116,7 @@ if __name__ == '__main__':
             sys.exit(1)
         else:
             print(f"Lint Score for {filepath} is {score}")
+    print("\\n\\n----------------- TESTING SUCCESSFUL ------------------\\n\\n")
 '''
 
 with open('test_commit.py', 'w', encoding='utf-8') as f:

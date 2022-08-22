@@ -23,7 +23,6 @@ with open('.git/hooks/pre-commit', 'w') as f:
 ################### WRITE MAKEFILE #########################################
 
 makefile = f'''test:
-	python {args.testfile}
 	python test_coverage.py --file={args.testfile} --limit={args.coverage}'''
 
 with open('Makefile', 'w') as f:

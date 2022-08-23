@@ -1,38 +1,14 @@
 import argparse
 
 parser = argparse.ArgumentParser(description="script to setup and secure commits")
-parser.add_argument("--testfile", help="The path of your test file (default: test.py)", type=str, required=False)
-parser.add_argument("--coverage", help="The minimum testing coverage (default: 80)", type=int, required=False)
-parser.add_argument("--lint", help="The minimum lint score out of 100 to pass (default: 75.0)", type=float, required=False)
+parser.add_argument("--testfile", help="The path of your test file (default: test.py)", default="test.py", type=str, required=False)
+parser.add_argument("--coverage", help="The minimum testing coverage (default: 80)", default=80, type=int, required=False)
+parser.add_argument("--lint", help="The minimum lint score out of 100 to pass (default: 75.0)", default=75.0, type=float, required=False)
 args, leftovers = parser.parse_known_args()
 
-if(args.testfile is None):
-    args.testfile = "test.py"
-if(args.coverage is None):
-    args.coverage = 80
-if(args.lint is None):
-    args.lint = 75.0
-
-############################################################################
-################# WRITE PRE-COMMIT FILE ####################################
-
-precommit = '''#!/bin/sh
-Make test || exit 1'''
-
-with open('.git/hooks/pre-commit', 'w') as f:
-    f.write(precommit)
-
-############################################################################
-################### WRITE MAKEFILE #########################################
-
-makefile = f'''test:
-	python test_commit.py --file={args.testfile} --limit={args.coverage} --lint={args.lint}'''
-
-with open('Makefile', 'w') as f:
-    f.write(makefile)
 
 ################################################################################
-###############   WRITE TEST COVERAGE FILE #####################################
+############### WRITE COMMIT TESTING FILE ######################################
 
 test_coverage = '''import os
 import sys
@@ -109,18 +85,11 @@ def checkLint(filepath):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="script to test the test coverage for your changes and for the entire repo")
-    parser.add_argument("--file", help="The path of your test file (default: test.py)", type=str, required=False)
-    parser.add_argument("--limit", help="The minimum testing coverage (default: 80)", type=int, required=False)
-    parser.add_argument("--lint", help="The minimum lint score out of 100 to pass (default: 75.0)", type=float, required=False)
+    parser = argparse.ArgumentParser(description="Script to test the test coverage for your changes and for the entire repo")
+    parser.add_argument("--file", help="The path of your test file (default: test.py)", default="test.py", type=str, required=False)
+    parser.add_argument("--limit", help="The minimum testing coverage (default: 80)", default=80, type=int, required=False)
+    parser.add_argument("--lint", help="The minimum lint score out of 100 to pass (default: 75.0)", default=75.0, type=float, required=False)
     args, leftovers = parser.parse_known_args()
-
-    if(args.file is None):
-        args.file = "test.py"
-    if(args.limit is None):
-        args.limit = 80
-    if(args.lint is None):
-        args.lint = 75
     
     print(f"\\n\\n{bcolors.HEADER}{bcolors.UNDERLINE}{bcolors.BOLD}TESTING SCRIPTS AND TEST-COVERAGE{bcolors.ENDC}")
     f_test_coverage(test_file=args.file, limit=args.limit)
@@ -143,3 +112,26 @@ if __name__ == '__main__':
 
 with open('test_commit.py', 'w', encoding='utf-8') as f:
     f.write(test_coverage)
+
+
+
+############################################################################
+################### WRITE MAKEFILE #########################################
+
+makefile = f'''test:
+	python test_commit.py --file={args.testfile} --limit={args.coverage} --lint={args.lint}'''
+
+with open('Makefile', 'w') as f:
+    f.write(makefile)
+
+
+
+############################################################################
+################# WRITE PRE-COMMIT FILE ####################################
+
+precommit = '''#!/bin/sh
+Make test || exit 1'''
+
+with open('.git/hooks/pre-commit', 'w') as f:
+    f.write(precommit)
+

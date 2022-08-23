@@ -10,7 +10,7 @@ args, leftovers = parser.parse_known_args()
 ################################################################################
 ############### WRITE COMMIT TESTING FILE ######################################
 
-test_coverage = '''import os
+test_commit = '''import os
 import sys
 import json
 import argparse
@@ -111,7 +111,7 @@ if __name__ == '__main__':
 '''
 
 with open('test_commit.py', 'w', encoding='utf-8') as f:
-    f.write(test_coverage)
+    f.write(test_commit)
 
 
 

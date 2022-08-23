@@ -97,7 +97,7 @@ if __name__ == '__main__':
     print(f"\\n\\n{bcolors.HEADER}{bcolors.UNDERLINE}{bcolors.BOLD}TESTING LINT SCORE (OUT OF 100.0){bcolors.ENDC}")
     list_changed_files = get_changed_files()
     for filepath in list_changed_files:
-        if(filepath in ['requirements.txt', 'setup.py', 'README.md', '.gitignore']):
+        if(filepath in ['requirements.txt', 'setup.py', 'README.md', '.gitignore', 'CODE_OF_CONDUCT.md', 'CONTRIBUTING.md', 'LICENSE']):
             continue
         lint_result, score = checkLint(filepath)
         if(score < args.lint):

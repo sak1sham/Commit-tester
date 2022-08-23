@@ -17,6 +17,10 @@ Use this boilerplate code inside your repo to test it before committing or pushi
     ```bash
     python setup.py
     ```
+   For more commands get help:
+   ```bash
+   python setup.py -h
+   ```
    Following files will be created:
     1. Makefile
     2. test_commit.py
